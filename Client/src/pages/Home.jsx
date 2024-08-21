@@ -6,7 +6,8 @@ const Home = () => {
   useEffect(() => {
     const fetchdata = async () => {
       const response = await axios.get("http://localhost:3000/");
-      console.log(response);
+      console.log(response.data);
+      setAlltask(response.data);
     };
     fetchdata();
   }, []);
@@ -14,6 +15,15 @@ const Home = () => {
     <>
       <h1 className="text-white text-3xl mb-6">Add New Task</h1>
       <Create />
+      {alltask.length === 0 ? (
+        <div className="text-white">No tasks</div>
+      ) : (
+        alltask.map((task) => (
+          <div key={task._id} className="text-white">
+            {task.task}
+          </div>
+        ))
+      )}
     </>
   );
 };

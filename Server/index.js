@@ -6,8 +6,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("running fine..");
+app.get("/", async (req, res) => {
+  const alltasks = await taskModel.find();
+  res.send(alltasks);
 });
 
 app.post("/create", async (req, res) => {
