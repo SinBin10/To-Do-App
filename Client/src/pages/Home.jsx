@@ -3,18 +3,20 @@ import Create from "../components/Create";
 import axios from "axios";
 const Home = () => {
   const [alltask, setAlltask] = useState([]);
+  const fetchdata = async () => {
+    const response = await axios.get("http://localhost:3000/");
+    setAlltask(response.data);
+  };
   useEffect(() => {
-    const fetchdata = async () => {
-      const response = await axios.get("http://localhost:3000/");
-      console.log(response.data);
-      setAlltask(response.data);
-    };
     fetchdata();
   }, []);
+  async function handlecreate() {
+    await fetchdata();
+  }
   return (
     <>
       <h1 className="text-white text-3xl mb-6">Add New Task</h1>
-      <Create />
+      <Create onCreateTask={handlecreate} />
       {alltask.length === 0 ? (
         <div className="text-white">No tasks</div>
       ) : (

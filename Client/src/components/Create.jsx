@@ -1,13 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 
-const Create = () => {
+const Create = ({ onCreateTask }) => {
   const [task, setTask] = useState("");
   const handleClick = async () => {
     await axios.post("http://localhost:3000/create", {
       task,
     });
     setTask("");
+    onCreateTask();
   };
   return (
     <div className="border-2 border-white">

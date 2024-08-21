@@ -18,6 +18,4 @@ app.post("/create", async (req, res) => {
   res.status(200).send();
 });
 
-app.listen(3000, () => {
-  console.log("server is running...");
-});
+app.listen(3000);
